@@ -124,8 +124,8 @@ class Pipelines:
                 steering_angles.append(steering_angle)
 
             # if the magnitude of steering angle is bigger than 0.2, flipped image of center is added.
-            # if image_directory_index == 0 and abs(steering_angle) > 0.2:
-            if image_directory_index == 0:
+            if image_directory_index == 0 and abs(steering_angle) > 0.2:
+            # if image_directory_index == 0:
                 images.append(utils.flip_img(yuv_image))
                 # images.append(utils.flip_img(cropped_resized))
                 steering_angles.append(steering_angle * (-1.0))
