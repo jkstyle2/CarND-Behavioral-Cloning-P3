@@ -79,18 +79,15 @@ To ensure that the model was not overfitting, the model was trained and validate
 #### 3. Model parameter tuning
 
 Most of model parameters such as kernel size(5x5, 3x3), strides(2x2, 1x1), depth(24, 36, 48, 64, 64) were tuned same as Nvidia already suggested.
-
 The batch size was set to 128, and epochs=3 was good enough to perform well.
-
 The model used an adam optimizer, so that the learning rate was not tuned manually (model.py line 141).
-
 Mean Square Error(MSE) is used for loss function.
-
 For dropout, keep probabilies are all set to 0.7.
 
 #### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I first tested the model with the data provided by Udacity, and felt that it is not good enough when the curvature is very large. Then, I collected my own data for center lane driving, recovering from the left and right sides of the road from all three different cameras.
+
 As the simulator provides three different images taken from center, left, right cameras, all those images are appropriately used to train the model.
 
 For details about how I created the training data, see the next section. 
