@@ -93,7 +93,7 @@ For dropout, keep probabilies are all set to 0.7.
 Training data was chosen to keep the vehicle driving on the road. I first tested the model with the data provided by Udacity, and felt that it is not good enough when the curvature is very large. Then, I collected my own data for center lane driving, recovering from the left and right sides of the road from all three different cameras.
 
 
-As the simulator provides three different images taken from center, left, right cameras, all those images are appropriately used to train the model.
+As the simulator provides three different images taken from center, left, right cameras, all those images are used to train the model.
 
 For details about how I created the training data, see the next section. 
 
@@ -101,24 +101,22 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to read the Nvidia [paper](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) and utilize the architecture since it has been proven to be very successful in real world self-driving car tasks. It was also recommended during the lesson.
+The overall strategy for deriving a model architecture was to read the Nvidia [paper](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) and to utilize the architecture since it has been proven to be very successful in real world self-driving car tasks. It was also recommended during the lesson.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting.
 
 The official [paper](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) does not mention any sort of means to reduce overfitting problem, so that I just gave a first try adding 'Batch Normalization' layer in every convolutional and fully-connected layer of the network. Despite the fact that I was not very clear with the mechanism of Batch Normalization, as proposed in the [paper](https://arxiv.org/abs/1502.03167), Batch Normalization can act as a regularizer, also allowing us to use much higher learning rate and being less careful about initialization.
+
 In the beginning, it seemed working well with the low level of validation loss, which was around 0.0187, but it didn't go very well with the simulation test. There were a few spots where the vehicle repeatly fell off the track, departing the lane and ending up with falling into the lake.
 
-To improve the driving behavior in these cases, as a substitue of Batch Normalization, I decided to add dropout layers with 30% drop-rate placing in each Convolutional layer right after the activation functions, ReLU, are applied. At the end of the process, I found the vehicle being able to complete the track without any lane departure. I may need to search for what's the core difference between batch normalization and dropout though.
+To improve the driving behavior in these cases, as a substitue of Batch Normalization, I decided to add dropout layers with 30% drop-rate placing in each Convolutional layer right after the activation functions, ReLU. At the end of the process, I found the vehicle being able to complete the track without any lane departure. I may need to search for what's the core difference between batch normalization and dropout though.
 
 
 #### 2. Final Model Architecture
 
-
 The final model architecture (NvidiaModel.py) consists of 9 layers, including a Lambda layer for normalization, 5 convolutional layers, and 3 fully-connected layers. The input 70x160x3 YUV images are passed to the network and the overall architecutre looks like as below.
 
-
---visualization 추가하기
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Here is a visualization of the architecture
 
 <table>
     <tr>
@@ -309,7 +307,7 @@ To capture good driving behavior, following 4 types of training images are used.
 The captured training images don't fit right into the CNN, so some preprocessing was essentially required.
 There are Five image preprocessing works I have done: cropping, resizing, blurring, flipping, converting the color space into YUV
 
-First, images produced by the simulator in training modes are 160x320x3, and therefore they need do be resized to proper size prior to being fed to the CNN.
+First, images produced by the simulator in training modes are 160x320x3, and therefore they need to be resized to proper size prior to being fed into the CNN.
 This model expects input images to be size 70x160x3. To achieve this, the bottom 30 pixels and the top 60 pixels are cropped from the image and it is resized to size 70x160x3. A subtle Gaussian blur is also applied before resizing, and the color space is converted from RGB to YUV(as the [paper](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) suggested). Because drive.py used the same CNN Model to predict steering angles in real time, it definitely needs to be done with same image processing (NOTE: as model.py uses cv2.imread(), its conversion is BGR to YUV while drive.py converts from RGB to YUV). 
 
 To balance out the dataset with non-zero steering angles, I also applied a correction of factor +,- 0.2 to the steering angle for left and right camera images. Because most steering angles from each camera were heavily biased towards 0.0 angle, this correction technique offsets this problem well.
@@ -328,10 +326,8 @@ Then, those all processed images are normalized in Lambda layer using x/127.5 -1
 ![](./images/resized.png)
 
 
-
-
 I had total 39493 number of data points, which were all collected by myself, and they were split into a training and validation set. 
-Then the data set were randomly shuffled and 20% of the data were put into a validation set. 
+Then the data set were randomly shuffled and 20% of the data were put into a validation set.   
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The graph below shows how training loss and validation loss in each epoch changes.
 
 ### Loss
