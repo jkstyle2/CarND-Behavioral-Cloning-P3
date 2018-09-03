@@ -328,7 +328,8 @@ Then, those all processed images are normalized in Lambda layer using x/127.5 -1
 
 I had total 39493 number of data points, which were all collected by myself, and they were split into a training and validation set. 
 Then the data set were randomly shuffled and 20% of the data were put into a validation set.   
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The graph below shows how training loss and validation loss in each epoch changes.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting.
+The graph below shows how training loss and validation loss in each epoch changes.
 
 ### Loss
 ![](./images/epochs_loss.png)
