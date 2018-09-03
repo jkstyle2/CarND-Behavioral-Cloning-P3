@@ -69,7 +69,7 @@ This model is used because of its simplicity and demonstrated ability to perform
 
 #### 2. Attempts to reduce overfitting in the model
 
-To overcome overfitting problem, I used several techniques for data augmentation such as flipping images horizontally, using three images from different views(center, left, right), and applying dropout layers to help the model generalize (model.py lines **).
+To overcome overfitting problem, I used several techniques for data augmentation such as flipping images horizontally, using three images from different views(center, left, right), and applying dropout layers to help the model generalize (NvidiaModel.py lines 25, 30, 35, 40, 45).
  
 To ensure that the model was not overfitting, the model was trained and validated on different data sets(80%: training set, 20%: validation set). Finally, the model was successfully tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
@@ -78,7 +78,7 @@ To ensure that the model was not overfitting, the model was trained and validate
 
 Most of model parameters such as kernel size(5x5, 3x3), strides(2x2, 1x1), depth(24, 36, 48, 64, 64) were tuned same as Nvidia already suggested.
 The batch size was set to 128, and epochs=3 was good enough to perform well. 
-The model used an adam optimizer, so that the learning rate was not tuned manually (model.py line **).
+The model used an adam optimizer, so that the learning rate was not tuned manually (model.py line 141).
 Mean Square Error(MSE) is used for loss function.
 For dropout, keep probabilies are all set to 0.7.
 
