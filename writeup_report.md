@@ -1,5 +1,3 @@
-1. visualizing Epoch에 따른 loss 변화
-2. 
 
 # **Behavioral Cloning** 
 
@@ -67,10 +65,6 @@ The fundamental model that I tried to design for this project comes from a well-
 This model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. The base architecture is as below.
 
 <img src="./images/NvidiaModel.png?raw=true" width="400px">
-
-![Nvidia_Model][image1]
-
-
 
 
 #### 2. Attempts to reduce overfitting in the model
