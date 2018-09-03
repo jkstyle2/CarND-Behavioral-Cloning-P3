@@ -92,6 +92,7 @@ For dropout, keep probabilies are all set to 0.7.
 
 Training data was chosen to keep the vehicle driving on the road. I first tested the model with the data provided by Udacity, and felt that it is not good enough when the curvature is very large. Then, I collected my own data for center lane driving, recovering from the left and right sides of the road from all three different cameras.
 
+
 As the simulator provides three different images taken from center, left, right cameras, all those images are appropriately used to train the model.
 
 For details about how I created the training data, see the next section. 
