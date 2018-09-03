@@ -62,22 +62,24 @@ The model.py file contains the code for training and saving the convolution neur
 #### 1. An appropriate model architecture has been employed
 
 The fundamental model that I tried to design for this project comes from a well-known convolutional neural network which was officially introduced by [Nvidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) for End-to-End driving. 
-This model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. The base architecture is as below.
+This model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. 
+The base architecture is as below.
 
 <img src="./images/NvidiaModel.png?raw=true" width="400px">
 
 
+
 #### 2. Attempts to reduce overfitting in the model
 
-To overcome overfitting problem, I used several techniques for data augmentation such as flipping images horizontally, using three images from different views(center, left, right), and applying dropout layers to help the model generalize (NvidiaModel.py lines 25, 30, 35, 40, 45).
- 
+To overcome overfitting problem, I used several techniques for data augmentation such as flipping images horizontally, using three images from different views(center, left, right), and applying dropout layers to help the model generalize.
+
 To ensure that the model was not overfitting, the model was trained and validated on different data sets(80%: training set, 20%: validation set). Finally, the model was successfully tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 
 #### 3. Model parameter tuning
 
 Most of model parameters such as kernel size(5x5, 3x3), strides(2x2, 1x1), depth(24, 36, 48, 64, 64) were tuned same as Nvidia already suggested.
-The batch size was set to 128, and epochs=3 was good enough to perform well. 
+The batch size was set to 128, and epochs=3 was good enough to perform well.
 The model used an adam optimizer, so that the learning rate was not tuned manually (model.py line 141).
 Mean Square Error(MSE) is used for loss function.
 For dropout, keep probabilies are all set to 0.7.
