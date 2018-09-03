@@ -63,8 +63,9 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-The fundamental model that I tried to design for this project comes from a well-known convolutional neural network which was officially introduced by [nVidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) for End-to-End driving. 
+The fundamental model that I tried to design for this project comes from a well-known convolutional neural network which was officially introduced by [Nvidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) for End-to-End driving. 
 This model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. The base architecture is as below.
+
 ![Nvidia_Model][image1]
 
 
@@ -114,10 +115,6 @@ The final model architecture (NvidiaModel.py) consists of 9 layers, including a 
 
 --visualization 추가하기
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
-
-
 
 <table>
     <tr>
