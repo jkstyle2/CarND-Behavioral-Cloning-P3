@@ -66,6 +66,8 @@ The model.py file contains the code for training and saving the convolution neur
 The fundamental model that I tried to design for this project comes from a well-known convolutional neural network which was officially introduced by [Nvidia Autonomous Car Group](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) for End-to-End driving. 
 This model is used because of its simplicity and demonstrated ability to perform well on self-driving car tasks. The base architecture is as below.
 
+<img src="./images/NvidiaModel.png?raw=true" width="400px">
+
 ![Nvidia_Model][image1]
 
 
