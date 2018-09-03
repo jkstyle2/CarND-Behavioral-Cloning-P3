@@ -64,7 +64,7 @@ def telemetry(sid, data):
         image = Image.open(BytesIO(base64.b64decode(imgString)))
         image_array = np.asarray(image)
 
-        ## added
+        ## modified lines ##
         image_array = utils.crop_img(image_array)
         image_array = utils.blur_img(image_array)
         image_array = utils.resize_img(image_array)

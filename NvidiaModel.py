@@ -1,17 +1,15 @@
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Conv2D, BatchNormalization, Activation, Dropout
-# from keras.layers.core import Flatten, Dense, Lambda, Conv2D, Activation
 from keras.layers.pooling import MaxPooling2D
 # from keras.layers.normalization import BatchNormalization
 
 def NvidiaModel():
-
     '''
     Nvidia model is used because of its simplicity and demonstrated ability
     to perform well on self-driving car tasks.
     '''
 
-    # row, col, ch = 160, 320, 3  # Trimmed image format
+    # row, col, ch = 160, 320, 3  # original image size
     row, col, ch = 70, 160, 3
     activation_type = 'relu'
     dropout_prob = 0.3
@@ -20,8 +18,6 @@ def NvidiaModel():
 
     # Normalization Layer
     model.add(Lambda(lambda x: x/127.5 - 1., input_shape=(row, col, ch)))
-
-    # model.add(Cropping2D(cropping=((70,25),(0,0))))
 
     # Convolutional Layer 1 : input: (70,160,3) , output: (33,78,24)
     model.add(Conv2D(filters=24, kernel_size=(5,5), strides=(2,2)))

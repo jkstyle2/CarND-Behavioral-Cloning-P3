@@ -14,7 +14,7 @@ from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 from NvidiaModel import NvidiaModel
 import utils
-from nn import model
+
 
 class Pipelines:
 
@@ -108,19 +108,10 @@ class Pipelines:
             # addition from center/left/right images
             image = cv2.imread(self.image_directory + image_file_name)  # opencv reads images in BGR color
             cropped_image = utils.crop_img(image)
-            blurred_image = utils.blur_img(cropped_image)
+            blurred_image = utils.blur_img(cropped_image)   # gaussian blurring
             resized_image = utils.resize_img(blurred_image)
-            yuv_image = utils.bgr2yuv(resized_image)
+            yuv_image = utils.bgr2yuv(resized_image)    # bgr to yuv (as nVidia suggested)
             images.append(yuv_image)
-
-            # # rgb_image = utils.bgr2rgb(image)  # bgr to rgb
-            # # blurred_image = utils.blur_img(rgb_image)  # gaussian blurring
-            # blurred_image = utils.blur_img(image)  # gaussian blurring
-            # cropped_resized = utils.crop_and_resize(blurred_image)  # crop and resize (the input size is reshaped to (70, 160, 3))
-            # # yuv_image = utils.rgb2yuv(cropped_resized)  # rgb to yuv (as nVidia suggested)
-            # yuv_image = utils.bgr2yuv(cropped_resized)  # rgb to yuv (as nVidia suggested)
-            # images.append(yuv_image)
-            # # images.append(cropped_resized)
 
             # steer angle correction on left/right images to balance the dataset with non-zero steering angles
             if image_directory_index == 1:  # left camera
